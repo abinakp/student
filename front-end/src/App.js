@@ -17,7 +17,7 @@ export default class App extends Component {
     }
   }
   async getUsersData(){
-    const res = await axios.get('https://jsonplaceholder.typicode.com/users')
+    const res = await axios.get('http://localhost:6039/all')
     console.log(res.data)
     this.setState({loading:false, users: res.data})
   }
@@ -25,9 +25,10 @@ export default class App extends Component {
     this.getUsersData()
   }
   render() {
+
     const columns = [{  
-      Header: 'ID',  
-      accessor: 'id',
+      Header: 'RegNo',  
+      accessor: 'regno',
      }
      ,{  
       Header: 'Name',  
@@ -35,25 +36,25 @@ export default class App extends Component {
       }
      
      ,{  
-     Header: 'Username',  
-     accessor: 'username' ,
-     }
-     ,{  
-     Header: 'Phone',  
-     accessor: 'phone',
+     Header: 'DOB',  
+     accessor: 'date' ,
      },
      {  
-      Header: 'Email',  
-      accessor: 'email',
+      Header: 'Class',  
+      accessor: 'classz',
       },
       {  
-        Header: 'Website',  
-        accessor: 'website',
-        }
+        Header: 'Division',  
+        accessor: 'division',
+        },
+        {  
+          Header: 'Gender',  
+          accessor: 'gender',
+          }
   ]
     return (
     <div className="container">
-    <Form />
+    <Form getdata={() => this.getUsersData()}/>
       <ReactTable  
       data={this.state.users}  
       columns={columns}  

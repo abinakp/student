@@ -2,14 +2,14 @@ import React,{useState} from "react";
 import Axios from "axios";
 
 
-function Form () {
+function Form ({getdata}) {
     const url = "http://localhost:6039/create"
     const[data, setData] = useState({
         name: "",
         date: "",
-        classz: "",
-        division: "",
-        gender: "Female"
+        classz: "I",
+        division: "A",
+        gender: ""
     })
 
     
@@ -25,7 +25,8 @@ function Form () {
         })
 
         .then(res => {
-            console.log(res.data)
+            console.log(res.data);
+            getdata();
         })
     }
 
@@ -73,11 +74,10 @@ function Form () {
         <br></br>
 
         <div>
-        Gender:  Female
-        <input onChange= {(e) => handle(e)} id = "gender" value = "Female" type = 'radio' checked = {data.gender === "Female"} ></input>
+        Gender:Female
+        <input onChange= {(e) => handle(e)} id = "gender" value = "Female" type = 'radio' checked = {data.gender === "Female"}/>
         Male
-        <input onChange= {(e) => handle(e)} id = "gender" value = "Male" type = 'radio' checked = {data.gender === "Male"}></input>
-        <br></br>
+        <input onChange= {(e) => handle(e)} id = "gender" value = "Male" type = 'radio' checked = {data.gender === "Male"} />
         </div>
 
         <input type ='submit' value ="Submit"></input>   

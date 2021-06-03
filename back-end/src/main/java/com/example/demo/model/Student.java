@@ -1,5 +1,6 @@
-package student_information.demo;
+package com.example.demo.model;
 
+import org.springframework.data.annotation.Transient;
 import java.util.Date;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
@@ -7,25 +8,28 @@ import org.springframework.data.annotation.Id;
 
 
 
-
 @Document(collection = "student")
 public class Student {
 
+	@Transient
+    public static final String SEQUENCE_NAME = "users_sequence";
+	
     @Id
-    private String id;
+    private long id;
+    
     private String name;
     private Date date;
     private String classz;
     private String division;
     private String gender;
+    private String regno;
     public Student() {
-        super();
+//        super();
 
     }
 
-    public Student(String id, String name, Date date, String classz, String division, String gender) {
-        super();
-        this.id = id;
+    public Student(String name, Date date, String classz, String division, String gender) {
+//        super();
         this.name = name;
         this.date = date;
         this.classz = classz;
@@ -34,11 +38,11 @@ public class Student {
 
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -82,11 +86,22 @@ public class Student {
     public void setGender( String gender) {
         this.gender = gender;
     }
+    
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", Name=" + name + ", class=" + classz + ", emailId=" + division + ", gender=" +gender+
+            "]";
 
+}
 
+    public String getRegno() {
+        return regno;
+    }
 
-
-
-
-
+    
+    public void setRegno( String regno) {
+        this.regno = regno;
+    }
+    
+    
 }
